@@ -1,0 +1,8 @@
+{
+  "name": "dulurjs",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "keywords": [],
+  "author": "Andri Nur Arief",
+  "license": "MIT"
+}
