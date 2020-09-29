@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strict": true,
+    "strictNullChecks":false,
+    "strictPropertyInitialization": false,
+    "module": "CommonJS",
+    "target": "ES2020",
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "lib": ["ES6", "DOM"]
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "dist"
+  ]
+}
