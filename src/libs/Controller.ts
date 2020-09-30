@@ -8,7 +8,6 @@ import {HTTP_ROLES, RoleMetadata} from '../decorators/AuthenticationDecorator';
 import {AuthChecker, AuthOptions, RolesChecker} from '../middlewares/AuthChecker';
 import _ from 'lodash';
 
-
 const { Router } = require('express');
 
 export function registerController(app: Express) {
@@ -73,18 +72,25 @@ export function registerController(app: Express) {
                         if(result) {
                             methodMiddlewares.push(RolesChecker(authOptions, result.roles, result.schema));
                         }
-
                     }
 
                     router[m.method](m.path, methodMiddlewares, (req: Request, res: Response, next: NextFunction) => {
                         if(controllerHandler instanceof Promise) {
                             controllerHandler.catch(next);
                         }
-                        
+
                         const handler = controllerHandler[m.methodName];
                         if(handler instanceof Promise) {
                             handler.catch(next);
                         }
+
+                        // Add information to endpoints.
+                        app.endpoints.push({
+                            path: m.path,
+                            httpMethod: m.method,
+                            method: m.method,
+                            controller: className
+                        });
 
                         handler(req, res, next);
                         // TODO Add Dependency Injection

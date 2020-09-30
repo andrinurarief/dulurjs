@@ -1,11 +1,12 @@
 // @ts-ignore
 import {Connection} from 'typeorm';
 import {Logger} from 'log4js';
+import {IConfig} from '../../core/IConfig';
 
 declare global {
     namespace Express {
         interface Application {
-            config: any
+            config: IConfig
             logger: Logger
             endpoints: {
                 path: string,
@@ -24,6 +25,7 @@ declare global {
             model: any
         }
         interface Request {
+            logger: Logger,
             database: Connection,
             roles: string[],
             services: any
